@@ -63,3 +63,11 @@
 .is-hidden {
   display: none;
 }
+
+.number-pages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(190, 192, 196);
+  margin-bottom: 10px;
+}

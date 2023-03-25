@@ -18,7 +18,38 @@
         placeholder="Пошук зображень..."
       />
       <button class="button" type="submit">Пошук</button>
+
+      <!-- <div class="number-pages">
+        <span>Обери кількість</span>
+        <select class="perPageSelect" id="perPageSelect">
+          <option value="40">40</option>
+          <option value="80">80</option>
+          <option value="160">160</option>
+        </select>
+      </div> -->
     </form>
+
+    <div class="number-pages">
+      <span>Обери кількість</span>
+      <div class="perPageSelect" id="perPageSelect">
+        <label>
+          <input type="radio" name="perPage" value="40" checked />
+          <span>40</span>
+        </label>
+        <label>
+          <input type="radio" name="perPage" value="80" />
+          <span>80</span>
+        </label>
+        <label>
+          <input type="radio" name="perPage" value="160" />
+          <span>160</span>
+        </label>
+        <label>
+          <input class="input-300" type="radio" name="perPage" value="200" />
+          <span>300</span>
+        </label>
+      </div>
+    </div>
 
     <div class="gallery">
       <!-- Картки зображень -->

@@ -6,19 +6,27 @@ import $ from 'jquery';
 
 const form = document.querySelector('.search-form');
 const inputElement = document.querySelector('input[name="searchQuery"]');
-
 const container = document.querySelector('.gallery');
 const loadMore = document.querySelector('.load-more');
+const perPageSelect = document.getElementById('perPageSelect');
+const inputRadio = document.querySelector('.input-300');
 
 const URL = 'https://pixabay.com/api/';
 const KEY = '34551974-263ab9c7e5b8efeaa679c471a';
 
 let page = 1;
 
+let perPage = 40;
+
 loadMore.classList.add('is-hidden');
 
 form.addEventListener('submit', handleSearch);
 loadMore.addEventListener('click', heandleLoadMorePictures);
+inputRadio.addEventListener('click', showMessage);
+
+perPageSelect.addEventListener('change', evt => {
+  perPage = evt.target.value;
+});
 
 infiniteІcroll();
 
@@ -83,7 +91,7 @@ async function fetchPictures(inputValue) {
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: true,
-        per_page: 40,
+        per_page: perPage,
         page: page,
       },
     });
@@ -157,6 +165,10 @@ function infiniteІcroll() {
       heandleLoadMorePictures();
     }
   });
+}
+
+function showMessage() {
+  Notiflix.Notify.success('Воу - воу тихіше, 200 максимум :))');
 }
 
 // ================================
