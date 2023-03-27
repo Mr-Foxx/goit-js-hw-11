@@ -11,11 +11,18 @@ const loadMore = document.querySelector('.load-more');
 const perPageSelect = document.getElementById('perPageSelect');
 const inputRadio = document.querySelector('.input-300');
 
+// const toggleSwitch = document.querySelector('.toggle-switch');
+// const checkBoxValue = toggleSwitch.querySelector('input[type="checkbox"]');
+const checkBoxValue = document.querySelector(
+  '.toggle-switch input[type="checkbox"]'
+);
+
 const URL = 'https://pixabay.com/api/';
 const KEY = '34551974-263ab9c7e5b8efeaa679c471a';
 
 let page = 1;
 
+let orientation;
 let perPage = 40;
 
 loadMore.classList.add('is-hidden');
@@ -23,7 +30,6 @@ loadMore.classList.add('is-hidden');
 form.addEventListener('submit', handleSearch);
 loadMore.addEventListener('click', heandleLoadMorePictures);
 inputRadio.addEventListener('click', showMessage);
-
 perPageSelect.addEventListener('change', evt => {
   perPage = evt.target.value;
 });
@@ -35,8 +41,13 @@ async function handleSearch(evt) {
 
   const inputValue = inputElement.value.toLowerCase().trim();
 
+  checkBoxValue.checked
+    ? (orientation = 'vertical')
+    : (orientation = 'horizontal');
+
   try {
     const picturesData = await fetchPictures(inputValue);
+    console.log(picturesData);
     clearForm();
     renderPictures(picturesData.hits);
 
@@ -89,7 +100,8 @@ async function fetchPictures(inputValue) {
         key: KEY,
         q: inputValue,
         image_type: 'photo',
-        orientation: 'horizontal',
+        orientation: `${orientation}`,
+
         safesearch: true,
         per_page: perPage,
         page: page,
