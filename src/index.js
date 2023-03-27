@@ -10,6 +10,7 @@ const container = document.querySelector('.gallery');
 const loadMore = document.querySelector('.load-more');
 const perPageSelect = document.getElementById('perPageSelect');
 const inputRadio = document.querySelector('.input-300');
+const clearBtn = document.querySelector('#clear-search-btn');
 
 // const toggleSwitch = document.querySelector('.toggle-switch');
 // const checkBoxValue = toggleSwitch.querySelector('input[type="checkbox"]');
@@ -32,6 +33,11 @@ loadMore.addEventListener('click', heandleLoadMorePictures);
 inputRadio.addEventListener('click', showMessage);
 perPageSelect.addEventListener('change', evt => {
   perPage = evt.target.value;
+});
+clearBtn.addEventListener('click', () => {
+  clearForm();
+  inputElement.value = '';
+  loadMore.classList.add('is-hidden');
 });
 
 infiniteІcroll();
