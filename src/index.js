@@ -79,11 +79,11 @@ async function heandleLoadMorePictures() {
   const inputValue = inputElement.value.toLowerCase().trim();
 
   try {
-    const resultData = await fetchPictures(inputValue);
+    const resultData = await fetchPictures(inputValue,page + 1 );
+    page += 1;
 
     renderPictures(resultData.hits);
 
-    page += 1;
 
     if (resultData.hits.length === resultData.totalHits) {
       loadMore.classList.add('is-hidden');
@@ -99,7 +99,7 @@ async function heandleLoadMorePictures() {
   }
 }
 
-async function fetchPictures(inputValue) {
+async function fetchPictures(inputValue,page) {
   try {
     const response = await axios.get(`${URL}`, {
       params: {
@@ -107,7 +107,6 @@ async function fetchPictures(inputValue) {
         q: inputValue,
         image_type: 'photo',
         orientation: `${orientation}`,
-
         safesearch: true,
         per_page: perPage,
         page: page,
